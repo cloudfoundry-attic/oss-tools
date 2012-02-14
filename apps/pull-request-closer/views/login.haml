@@ -1,0 +1,24 @@
+.form-login
+  %p.hero-body Log In
+  %hr
+  %form{:action => "/login", :method => "post", :novalidate => ""}
+    .prominent
+      -if (flash[:error])
+        .error{:style => "color:red"}
+          %span.flash=flash[:error]
+          - flash[:error] = nil
+          %a{:href=>"mailto:support@cloudfoundry.com?subject=Password-Reset"}Forgot password?
+      %label{:for => "username"} Email
+      %input#username{:autofocus => "autofocus", :name => "email", :type => "email", :value => params[:email]}
+        %label{:for => "password"} Password
+        %input#password{:name => "password", :type => "password"}
+
+    %button{:type => "submit"} Log In
+  %hr
+  %label Don't have an account yet?
+  %p.orange-button
+    %a{:href => "http://www.cloudfoundry.com/signup", :target =>"_blank"}
+      = 'Sign Up'
+      %span for
+      = "Cloud Foundry"
+    / .buttons
