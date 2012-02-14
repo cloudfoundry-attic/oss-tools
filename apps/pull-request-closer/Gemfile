@@ -1,0 +1,16 @@
+source 'http://rubygems.org'
+
+gem 'sinatra'
+gem 'json'
+gem 'haml'
+gem 'rspec'
+gem "rack-test"
+gem 'octokit'
+
+#group :development do
+#end
+
+#group :test do
+#  gem "mock_redis"
+#  gem "rspec"
+#end
