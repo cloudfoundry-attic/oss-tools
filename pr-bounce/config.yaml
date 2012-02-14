@@ -1,0 +1,12 @@
+# Copyright (C) 2012 VMware, Inc. All rights reserved.
+---
+organization: 'cloudfoundry'
+min_pr_num:
+  vcap: 183
+  vmc: 47
+  docs: 0
+  vcap-services:  15
+  vcap-java:  9
+  vcap-tests:  11
+  vcap-test-assets:  1
+  vcap-java-client:  8
