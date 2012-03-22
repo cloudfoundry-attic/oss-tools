@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'logger'
+
+require 'gerrit/cli/dispatcher'
+
+
+logger = Logger.new(STDOUT)
+logger.formatter = proc {|severity, datetime, progname, msg| "#{msg}\n" }
+
+dispatcher = Gerrit::Cli::Dispatcher.new(logger)
+dispatcher.run_command(ARGV)
