@@ -12,7 +12,8 @@ class Gerrit::Cli::Command::Help < Gerrit::Cli::Command::Base
     @commands = commands.dup.merge(self.name => self)
 
     rows = @commands.keys.sort.map {|k| [k, @commands[k].summary] }
-    @commands_summary = Gerrit::Cli::Util.render_table(rows)
+    @commands_summary = Gerrit::Cli::Util.render_table(rows,
+                                                       :delimiter => '  ')
   end
 
   def setup_option_parser

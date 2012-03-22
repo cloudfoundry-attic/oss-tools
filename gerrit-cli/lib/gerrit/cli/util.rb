@@ -5,7 +5,7 @@ end
 
 module Gerrit::Cli::Util
   class << self
-    def render_table(rows)
+    def render_table(rows, opts={})
       return "" if rows.empty?
 
       max_col_lengths = []
@@ -25,7 +25,8 @@ module Gerrit::Cli::Util
         end
       end
 
-      row_format = max_col_lengths.map {|len| "%-#{len}s" }.join(" ")
+      delim = opts[:delimiter] || ' '
+      row_format = max_col_lengths.map {|len| "%-#{len}s" }.join(delim)
 
       rows.map {|row| row_format % row }.join("\n")
     end

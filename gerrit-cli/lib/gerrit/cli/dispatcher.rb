@@ -1,5 +1,6 @@
 require 'logger'
-
+require 'gerrit/cli/shell_runner'
+require 'gerrit/cli/command/clone'
 require 'gerrit/cli/command/help'
 require 'gerrit/cli/errors'
 
@@ -11,8 +12,13 @@ end
 class Gerrit::Cli::Dispatcher
   def initialize(logger=nil)
     @logger = logger ||  Logger.new(STDOUT)
+    @logger.level = Logger::INFO
 
-    @commands = {}
+    runner = Gerrit::Cli::ShellRunner.new(logger)
+
+    @commands = {
+      'clone' => Gerrit::Cli::Command::Clone.new(logger, runner)
+    }
 
     @commands['help'] = Gerrit::Cli::Command::Help.new(logger, @commands)
   end
