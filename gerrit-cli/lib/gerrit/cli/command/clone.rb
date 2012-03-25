@@ -1,4 +1,3 @@
-require 'logger'
 require 'uri'
 
 require 'gerrit/cli/command/base'
