@@ -13,12 +13,25 @@ class Gerrit::Cli::ShellRunner
   end
 
   def system!(command)
-    @logger.debug("+ #{command}")
+    @logger.info("+ #{command}")
 
     unless system(command)
       st = $?.exitstatus
       emsg = "Command '#{command}' exited with non-zero status (#{st})."
       raise Gerrit::Cli::Error.new(emsg)
     end
+  end
+
+  def capture!(command)
+    @logger.info("+ #{command}")
+
+    out = `#{command}`
+    unless $?.success?
+      st = $?.exitstatus
+      emsg = "Command '#{command}' exited with non-zero status (#{st})."
+      raise Gerrit::Cli::Error.new(emsg)
+    end
+
+    out
   end
 end
