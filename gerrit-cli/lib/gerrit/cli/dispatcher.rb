@@ -2,6 +2,7 @@ require 'logger'
 require 'gerrit/cli/shell_runner'
 require 'gerrit/cli/command/clone'
 require 'gerrit/cli/command/help'
+require 'gerrit/cli/command/push'
 require 'gerrit/cli/errors'
 
 module Gerrit
@@ -17,7 +18,8 @@ class Gerrit::Cli::Dispatcher
     runner = Gerrit::Cli::ShellRunner.new(logger)
 
     @commands = {
-      'clone' => Gerrit::Cli::Command::Clone.new(logger, runner)
+      'clone' => Gerrit::Cli::Command::Clone.new(logger, runner),
+      'push'  => Gerrit::Cli::Command::Push.new(logger, runner),
     }
 
     @commands['help'] = Gerrit::Cli::Command::Help.new(logger, @commands)
