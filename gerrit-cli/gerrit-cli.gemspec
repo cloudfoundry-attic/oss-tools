@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://www.cloudfoundry.org"
 
   gem.files         = Dir.glob("**/*")
-  gem.executables   = Dir.glob("bin/*")
+  gem.executables   = ["gerrit"]
   gem.test_files    = Dir.glob("spec/**/*")
   gem.name          = "gerrit-cli"
   gem.require_paths = ["lib"]
