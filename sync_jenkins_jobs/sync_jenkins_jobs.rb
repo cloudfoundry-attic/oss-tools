@@ -80,7 +80,6 @@ def sync_configs(logger, live_configs_dir, jobs_src_dir)
   to_add = live_jobs - src_jobs
   to_add.each do |job|
     logger.info("Adding #{job} to release")
-    next
     system!(logger, "mkdir #{jobs_src_dir}/#{job}")
     convert_config_to_template(logger, job, live_configs_dir, jobs_src_dir)
   end
