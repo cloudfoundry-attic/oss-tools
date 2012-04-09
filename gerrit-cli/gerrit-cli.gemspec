@@ -2,7 +2,7 @@
 require File.expand_path('../lib/gerrit/cli/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["VMWare"]
+  gem.authors       = ["VMware"]
   gem.email         = ["support@vmware.com"]
   gem.description   = "This provides a tool for easing common interactions"   \
                       + " with Gerrit. It is mostly orthogonal to the `repo'" \
