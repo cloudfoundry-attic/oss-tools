@@ -25,18 +25,22 @@ class Gerrit::Cli::Dispatcher
     @commands['help'] = Gerrit::Cli::Command::Help.new(logger, @commands)
   end
 
+  def show_available_commands
+    @logger.info("Available Commands:")
+    @logger.info(@commands['help'].commands_summary)
+  end
+
   def run_command(argv)
     if argv.empty?
-      @logger.info("Available Commands:")
-      @logger.info(@commands['help'].commands_summary)
+      show_available_commands
     else
       args = argv.dup
       command_name = args.shift
       if command = @commands[command_name]
         command.run(args)
       else
-        @logger.error("ERROR: Unknown command '#{command_name}'")
-        @commands['help'].show_command_summaries
+        @logger.error("ERROR: Unknown command '#{command_name}'\n")
+        show_available_commands
       end
     end
   rescue Gerrit::Cli::UsageError => ue
