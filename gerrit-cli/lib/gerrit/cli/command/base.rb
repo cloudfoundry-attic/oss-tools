@@ -20,11 +20,6 @@ class Gerrit::Cli::Command::Base
   end
 
   def setup_option_parser
-    @option_parser.on('-h', '--help', 'Display usage') do
-      show_usage
-      exit 0
-    end
-
     @option_parser.on('-v', '--verbose', 'Show debugging information') do
       @logger.level = Logger::DEBUG
     end

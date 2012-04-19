@@ -28,7 +28,10 @@ class Gerrit::Cli::Command::Push < Gerrit::Cli::Command::Base
   end
 
   def usage
-    "Usage: gerrit push [options] [<remote>]\n\n" + @option_parser.help
+    "Usage: gerrit push [options] [<remote>]\n" \
+    + @option_parser.banner                     \
+    + "\n\nAvailable options:\n"               \
+    + @option_parser.summarize.join
   end
 
   def run(argv)
