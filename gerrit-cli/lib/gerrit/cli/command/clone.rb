@@ -21,7 +21,10 @@ class Gerrit::Cli::Command::Clone < Gerrit::Cli::Command::Base
   end
 
   def usage
-    "Usage: gerrit clone [options] <repo> [<dir>]\n\n" + @option_parser.help
+    "Usage: gerrit clone [options] <repo> [<dir>]\n" \
+    + option_parser.banner                           \
+    + "\n\nAvailable options:\n"                     \
+    + option_parser.summarize.join
   end
 
   def run(argv)

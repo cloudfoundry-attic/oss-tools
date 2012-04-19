@@ -26,6 +26,7 @@ class Gerrit::Cli::Dispatcher
   end
 
   def show_available_commands
+    @logger.info("Usage: gerrit <command>\n")
     @logger.info("Available Commands:")
     @logger.info(@commands['help'].commands_summary)
   end

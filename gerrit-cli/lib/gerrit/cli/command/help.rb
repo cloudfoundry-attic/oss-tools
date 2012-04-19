@@ -12,7 +12,8 @@ class Gerrit::Cli::Command::Help < Gerrit::Cli::Command::Base
     @commands = commands.dup.merge(self.name => self)
 
     rows = @commands.keys.sort.map {|k| [k, @commands[k].summary] }
-    @commands_summary = Gerrit::Cli::Util.render_table(rows,
+    indented_rows = rows.map {|cmd,smry| [cmd.sub(/^/,"    "),smry]}
+    @commands_summary = Gerrit::Cli::Util.render_table(indented_rows,
                                                        :delimiter => '  ')
   end
 
@@ -24,11 +25,13 @@ class Gerrit::Cli::Command::Help < Gerrit::Cli::Command::Base
   end
 
   def usage
-    "Usage: gerrit help [options] [<command>]\n\n" \
-    + @option_parser.help                          \
-    + "\nAvailable commands:\n"                    \
-    + @commands_summary
+    "Usage: gerrit help [options] [<command>]\n" \
+    + "\nAvailable options:\n"                   \
+    + @option_parser.summarize.join              \
+    + "Available commands:\n"                    \
+    + @commands_summary.to_s
   end
+
 
   def run(argv)
     args = @option_parser.parse(argv)
